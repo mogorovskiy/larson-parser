@@ -6,6 +6,8 @@ import org.mogorovskiy.model.Attorney;
 import org.mogorovskiy.model.AttorneyProfileSource;
 import org.mogorovskiy.parser.impl.ProfileSourceScraperImpl;
 import org.mogorovskiy.parser.impl.ProfileUrlsScraperImpl;
+import org.mogorovskiy.selenium.WebDriverUtil;
+import org.openqa.selenium.WebDriver;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -17,13 +19,15 @@ public class AttorneyParser {
 
     private final ProfileUrlsScraper profileUrlsScraper = new ProfileUrlsScraperImpl();
     private final ProfileSourceScraper profileSourceScraper = new ProfileSourceScraperImpl();
+    private static final WebDriverUtil DRIVER_UTIL = new WebDriverUtil();
 
     public List<Attorney> parse() {
-        List<String> profileUrls = profileUrlsScraper.scrape();
+        WebDriver webDriver = DRIVER_UTIL.getWebDriver();
+        List<String> profileUrls = profileUrlsScraper.scrape(webDriver);
 
         List<AttorneyProfileSource> profileSources = new ArrayList<>();
         for (String profileUrl : profileUrls) {
-            profileSources.add(profileSourceScraper.scrape(profileUrl));
+            profileSources.add(profileSourceScraper.scrape(profileUrl, webDriver));
         }
 
         List<Attorney> attorneys = new ArrayList<>();

@@ -1,10 +1,8 @@
 package org.mogorovskiy.parser;
 
-import org.mogorovskiy.model.Attorney;
 import org.mogorovskiy.model.AttorneyProfileSource;
-
-import java.util.List;
+import org.openqa.selenium.WebDriver;
 
 public interface ProfileSourceScraper {
-    AttorneyProfileSource scrape(String url);
+    AttorneyProfileSource scrape(String url, WebDriver webDriver);
 }
