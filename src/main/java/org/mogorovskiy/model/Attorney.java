@@ -3,7 +3,6 @@ package org.mogorovskiy.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,8 +24,8 @@ public class Attorney {
     private String photoUrl;
     private String profileUrl;
     private List<String> locations;
-    private List<String> emails;
-    private List<String> phones;
+    private String email;
+    private String phone;
     private List<String> practiceAreas;
     private List<String> specialties;
 }
