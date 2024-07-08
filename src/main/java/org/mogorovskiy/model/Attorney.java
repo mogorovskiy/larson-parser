@@ -27,5 +27,4 @@ public class Attorney {
     private String email;
     private String phone;
     private List<String> practiceAreas;
-    private List<String> specialties;
 }

@@ -4,10 +4,12 @@ import org.mogorovskiy.parser.ProfileUrlsScraper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class ProfileUrlsScraperImpl implements ProfileUrlsScraper {
 
     private static final String URL = "https://www.larsonllp.com/people/";

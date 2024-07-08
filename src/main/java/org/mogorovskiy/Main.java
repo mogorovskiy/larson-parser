@@ -1,11 +1,13 @@
 package org.mogorovskiy;
 
-import org.mogorovskiy.parser.AttorneyParser;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import java.io.IOException;
-
+@SpringBootApplication
+@EnableJpaRepositories(basePackages = "org.mogorovskiy.repository")
 public class Main {
-    public static void main(String[] args) throws IOException {
-        new AttorneyParser().parse();
+    public static void main(String[] args) {
+        SpringApplication.run(Main.class, args);
     }
 }
