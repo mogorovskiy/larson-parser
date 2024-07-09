@@ -1,6 +1,7 @@
 package org.mogorovskiy.service;
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.mogorovskiy.model.Attorney;
 import org.mogorovskiy.repository.AttorneyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class AttorneyServiceImpl implements AttorneyService {
 
     @Autowired

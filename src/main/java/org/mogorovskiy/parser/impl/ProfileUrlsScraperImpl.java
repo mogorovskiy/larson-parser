@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
+import static org.mogorovskiy.util.PageCompletelyLoaded.pageCompletelyLoaded;
 
 public class ProfileUrlsScraperImpl implements ProfileUrlsScraper {
 
@@ -17,6 +18,7 @@ public class ProfileUrlsScraperImpl implements ProfileUrlsScraper {
     @Override
     public List<String> scrape(WebDriver webDriver) {
         webDriver.get(URL);
+        pageCompletelyLoaded(webDriver);
 
         List<WebElement> attorneyProfileUrls = webDriver.findElements(By.cssSelector(PROFILE_URLS_SEELCTOR));
 
