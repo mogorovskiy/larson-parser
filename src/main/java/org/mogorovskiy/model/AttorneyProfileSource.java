@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 
 @Entity
 @Data
-@NoArgsConstructor
 public class AttorneyProfileSource {
 
     private String source;

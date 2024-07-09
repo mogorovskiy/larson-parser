@@ -16,7 +16,12 @@ public class AttorneyServiceImpl implements AttorneyService {
     private final AttorneyRepository attorneyRepository;
 
     @Override
-    public List<Attorney> saveAll(List<Attorney> attorneys) {
-        return attorneyRepository.saveAll(attorneys);
+    public void save(List<Attorney> attorneys) {
+        attorneyRepository.saveAll(attorneys);
+    }
+
+    @Override
+    public List<Attorney> findAll() {
+        return attorneyRepository.findAll();
     }
 }

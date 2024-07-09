@@ -7,5 +7,8 @@ import java.util.List;
 
 @Service
 public interface AttorneyService {
-    List<Attorney> saveAll(List<Attorney> attorneys);
+
+    void save(List<Attorney> attorneys);
+
+    List<Attorney> findAll();
 }

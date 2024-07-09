@@ -8,7 +8,5 @@ public class WebDriverUtil {
         System.setProperty("webdriver.chrome.driver", "src/main/java/org/mogorovskiy/selenium/chromedriver.exe");
     }
 
-    public WebDriver getWebDriver() {
-        return new ChromeDriver();
-    }
+    public static final WebDriver WEB_DRIVER = new ChromeDriver();
 }

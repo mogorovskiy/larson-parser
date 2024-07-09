@@ -4,14 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.mogorovskiy.model.Attorney;
 import org.mogorovskiy.model.AttorneyProfileSource;
-import org.mogorovskiy.parser.impl.ProfileParserImpl;
-import org.mogorovskiy.parser.impl.ProfileSourceScraperImpl;
-import org.mogorovskiy.parser.impl.ProfileUrlsScraperImpl;
 import org.mogorovskiy.selenium.WebDriverUtil;
 import org.mogorovskiy.service.AttorneyService;
-import org.mogorovskiy.service.AttorneyServiceImpl;
 import org.openqa.selenium.WebDriver;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -27,15 +23,14 @@ public class AttorneyParser {
     private ProfileSourceScraper profileSourceScraper;
     private ProfileParser profileParser;
     private AttorneyService attorneyService;
-    private WebDriverUtil DRIVER_UTIL;
+    public static final WebDriver WEB_DRIVER = new ChromeDriver();
 
     public List<Attorney> parse() throws IOException {
-        WebDriver webDriver = DRIVER_UTIL.getWebDriver();
-        List<String> profileUrls = profileUrlsScraper.scrape(webDriver);
+        List<String> profileUrls = profileUrlsScraper.scrape(WEB_DRIVER);
 
         List<AttorneyProfileSource> profileSources = new ArrayList<>();
         for (String profileUrl : profileUrls) {
-            profileSources.add(profileSourceScraper.scrape(profileUrl, webDriver));
+            profileSources.add(profileSourceScraper.scrape(profileUrl, WEB_DRIVER));
         }
 
         List<Attorney> attorneys = new ArrayList<>();
@@ -43,7 +38,7 @@ public class AttorneyParser {
             attorneys.add(profileParser.parse(source));
         }
 
-        attorneyService.saveAll(attorneys);
+        attorneyService.save(attorneys);
 
         return attorneys;
     }
