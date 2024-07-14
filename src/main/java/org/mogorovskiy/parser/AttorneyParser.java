@@ -6,6 +6,7 @@ import org.mogorovskiy.model.AttorneyProfileSource;
 import org.mogorovskiy.selenium.WebDriverUtil;
 import org.mogorovskiy.service.AttorneyService;
 import org.openqa.selenium.WebDriver;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -19,6 +20,8 @@ public abstract class AttorneyParser {
     private final ProfileUrlsScraper profileUrlsScraper;
     private final ProfileSourceScraper profileSourceScraper;
     private final ProfileParser profileParser;
+
+    @Autowired
     private final AttorneyService attorneyService;
     private final WebDriverUtil DRIVER_UTIL;
 
