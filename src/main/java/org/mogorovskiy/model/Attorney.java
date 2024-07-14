@@ -1,11 +1,12 @@
 package org.mogorovskiy.model;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
+
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.List;
 
 @Entity
@@ -22,8 +23,13 @@ public class Attorney {
     private String linkedinUrl;
     private String photoUrl;
     private String profileUrl;
+
+    @ElementCollection
     private List<String> locations;
+
     private String email;
     private String phone;
+
+    @ElementCollection
     private List<String> practiceAreas;
 }

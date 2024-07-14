@@ -1,6 +1,5 @@
 package org.mogorovskiy.service;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.mogorovskiy.model.Attorney;
 import org.mogorovskiy.repository.AttorneyRepository;
@@ -10,11 +9,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class AttorneyServiceImpl implements AttorneyService {
 
     @Autowired
-    private final AttorneyRepository attorneyRepository;
+    private AttorneyRepository attorneyRepository;
 
     @Override
     public void save(List<Attorney> attorneys) {

@@ -1,4 +1,4 @@
-package org.mogorovskiy.parser.impl;
+package org.mogorovskiy.parser.larson;
 
 import org.mogorovskiy.model.AttorneyProfileSource;
 import org.mogorovskiy.parser.ProfileSourceScraper;
@@ -8,7 +8,7 @@ import java.io.IOException;
 
 import static org.mogorovskiy.util.PageCompletelyLoaded.pageCompletelyLoaded;
 
-public class ProfileSourceScraperImpl implements ProfileSourceScraper {
+public class LarsonProfileSourceScraper implements ProfileSourceScraper {
 
     @Override
     public AttorneyProfileSource scrape(String url, WebDriver webDriver) throws IOException {
