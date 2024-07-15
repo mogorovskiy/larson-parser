@@ -2,13 +2,17 @@ package org.mogorovskiy.parser.larson;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.mogorovskiy.model.Attorney;
 import org.mogorovskiy.model.AttorneyProfileSource;
 import org.mogorovskiy.parser.ProfileParser;
+import org.mogorovskiy.util.TextTrimmer;
 import org.springframework.stereotype.Component;
 
 import static org.mogorovskiy.util.ParseLinkedInUrl.parseLinkedInUrl;
+import static org.mogorovskiy.util.ParseLocations.parseLocations;
+import static org.mogorovskiy.util.ParsePhoneNumber.parsePhoneNumber;
+import static org.mogorovskiy.util.ParsePracticeAreas.parsePracticeAreas;
+import static org.mogorovskiy.util.ParseProfilePhotoUrl.parseProfilePhotoUrl;
 
 @Component
 public class LarsonProfileParser implements ProfileParser {
@@ -20,34 +24,25 @@ public class LarsonProfileParser implements ProfileParser {
     public static final String PRACTICE_AREAS_SELECTOR = ".columns-8.areas > ul";
     public static final String TITLE_SELECTOR = ".has-herotext-font-size";
 
-    public static final String PHONE_SELECTOR = "div.aboveline > br:nth-child(2)"; //TODO
-
     @Override
     public Attorney parse(AttorneyProfileSource attorneySource) {
         Document attorneyPage = Jsoup.parse(attorneySource.getSource());
         Attorney attorney = new Attorney();
 
-        //attorney.setProfileUrl(attorneySource.getProfileUrl());
-        //attorney.setBio(attorneyPage.select(BIO_SELECTOR).text());
-        //attorney.setEmail(attorneyPage.select(EMAIL_SELECTOR).text());
+        attorney.setProfileUrl(attorneySource.getProfileUrl());
+        String bio = attorneyPage.select(BIO_SELECTOR).text();
+        attorney.setBio(TextTrimmer.trimText(bio, 1));
+        attorney.setEmail(attorneyPage.select(EMAIL_SELECTOR).text());
         attorney.setPhone(parsePhoneNumber(attorneyPage));
-        //attorney.setLocations(toStringList(attorneyPage.select(LOCATIONS_SELECTOR)));
+        attorney.setLocations(parseLocations(attorneyPage));
         attorney.setLinkedinUrl(parseLinkedInUrl(attorneyPage));
-        //attorney.setFullName(attorneyPage.select(FULL_NAME_SELECTOR).text());
-        //attorney.setPracticeAreas(toStringList(attorneyPage.select(PRACTICE_AREAS_SELECTOR)));
-        //attorney.setTitle(attorneyPage.select(TITLE_SELECTOR).text());
-        //attorney.setPhotoUrl(parseProfilePhotoUrl(attorneyPage));
+        attorney.setFullName(attorneyPage.select(FULL_NAME_SELECTOR).text());
+        attorney.setPracticeAreas(parsePracticeAreas(attorneyPage));
+
+        String title = attorneyPage.select(TITLE_SELECTOR).text();
+        attorney.setTitle(TextTrimmer.trimText(title, 1));
+        attorney.setPhotoUrl(parseProfilePhotoUrl(attorneyPage));
 
         return attorney;
-    }
-
-    public static String parsePhoneNumber(Document attorneyPage) {
-        Element telLabel = attorneyPage.select("h3.label:contains(TEL)").first();
-        if (telLabel == null) {
-            return null;
-        }
-
-        String phoneNumber = telLabel.nextElementSibling().text().trim();
-        return phoneNumber;
     }
 }
