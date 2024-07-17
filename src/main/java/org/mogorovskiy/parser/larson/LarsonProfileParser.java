@@ -15,12 +15,12 @@ import static org.mogorovskiy.util.JsoupUtil.trimText;
 
 public class LarsonProfileParser implements ProfileParser {
 
-    public static final String BIO_SELECTOR = "#tabpanel-0 > p:nth-child(2)";
+    public static final String BIO_SELECTOR = ".biography.content p";
     public static final String EMAIL_SELECTOR = ".aboveline a";
     public static final String LOCATIONS_SELECTOR = "div.columns-3 > div:nth-child(4)";
     public static final String FULL_NAME_SELECTOR = ".bio-name > h1";
     public static final String PRACTICE_AREAS_SELECTOR = ".columns-8.areas > ul";
-    public static final String TITLE_SELECTOR = ".has-herotext-font-size";
+    public static final String TITLE_SELECTOR = ".columns-4.bio-name h2";
 
     @Override
     public Attorney parse(AttorneyProfileSource attorneySource) {
@@ -28,8 +28,7 @@ public class LarsonProfileParser implements ProfileParser {
         Attorney attorney = new Attorney();
 
         attorney.setProfileUrl(attorneySource.getProfileUrl());
-        String bio = attorneyPage.select(BIO_SELECTOR).text();
-        attorney.setBio(trimText(bio, 1));
+        attorney.setBio(attorneyPage.select(BIO_SELECTOR).text());
         attorney.setEmail(attorneyPage.select(EMAIL_SELECTOR).text());
         attorney.setPhone(parsePhoneNumber(attorneyPage));
         attorney.setLocations(parseLocations(attorneyPage));

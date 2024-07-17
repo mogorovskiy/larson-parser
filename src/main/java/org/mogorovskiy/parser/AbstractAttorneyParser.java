@@ -14,7 +14,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public abstract class AttorneyParser {
+public abstract class AbstractAttorneyParser {
 
     private final ProfileParser profileParser;
     private final AttorneyService attorneyService;
