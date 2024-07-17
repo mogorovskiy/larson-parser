@@ -6,7 +6,6 @@ import org.mogorovskiy.model.AttorneyProfileSource;
 import org.mogorovskiy.service.AttorneyService;
 import org.mogorovskiy.util.WebDriverUtil;
 import org.openqa.selenium.WebDriver;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -22,7 +21,7 @@ public abstract class AttorneyParser {
     private final ProfileUrlsScraper profileUrlsScraper;
     private final ProfileSourceScraper profileSourceScraper;
 
-    public List<Attorney> parse() throws IOException {
+    public void parse() throws IOException {
         WebDriver webDriver = WebDriverUtil.getWebDriver();
         List<String> profileUrls = profileUrlsScraper.scrape(webDriver);
 
@@ -39,7 +38,5 @@ public abstract class AttorneyParser {
         }
 
         attorneyService.save(attorneys);
-
-        return attorneys;
     }
 }
