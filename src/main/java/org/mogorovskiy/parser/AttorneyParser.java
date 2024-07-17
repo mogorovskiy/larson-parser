@@ -6,6 +6,7 @@ import org.mogorovskiy.model.AttorneyProfileSource;
 import org.mogorovskiy.service.AttorneyService;
 import org.mogorovskiy.util.WebDriverUtil;
 import org.openqa.selenium.WebDriver;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
