@@ -7,12 +7,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class LarsonParser extends AttorneyParser {
 
-    public LarsonParser() {
+    public LarsonParser(LarsonProfileParser larsonProfileParser, AttorneyServiceImpl attorneyService,
+                        LarsonProfileUrlsScraper larsonProfileUrlsScraper, LarsonProfileSourceScraper larsonProfileSourceScraper) {
         super(
-                new LarsonProfileParser(),
-                new AttorneyServiceImpl(),
-                new LarsonProfileUrlsScraper(),
-                new LarsonProfileSourceScraper()
+                larsonProfileParser,
+                attorneyService,
+                larsonProfileUrlsScraper,
+                larsonProfileSourceScraper
         );
     }
 }
