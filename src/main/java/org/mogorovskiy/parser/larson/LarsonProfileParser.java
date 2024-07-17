@@ -5,11 +5,14 @@ import org.jsoup.nodes.Document;
 import org.mogorovskiy.model.Attorney;
 import org.mogorovskiy.model.AttorneyProfileSource;
 import org.mogorovskiy.parser.ProfileParser;
-import org.springframework.stereotype.Component;
 
-import static org.mogorovskiy.util.JsoupUtil.*;
+import static org.mogorovskiy.util.JsoupUtil.parseLinkedInUrl;
+import static org.mogorovskiy.util.JsoupUtil.parseLocations;
+import static org.mogorovskiy.util.JsoupUtil.parsePhoneNumber;
+import static org.mogorovskiy.util.JsoupUtil.parsePracticeAreas;
+import static org.mogorovskiy.util.JsoupUtil.parseProfilePhotoUrl;
+import static org.mogorovskiy.util.JsoupUtil.trimText;
 
-@Component
 public class LarsonProfileParser implements ProfileParser {
 
     public static final String BIO_SELECTOR = "#tabpanel-0 > p:nth-child(2)";
