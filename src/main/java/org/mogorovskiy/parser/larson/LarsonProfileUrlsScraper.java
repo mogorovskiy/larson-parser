@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
-import static org.mogorovskiy.util.PageCompletelyLoaded.pageCompletelyLoaded;
+import static org.mogorovskiy.util.JsoupUtil.pageCompletelyLoaded;
 
 public class LarsonProfileUrlsScraper implements ProfileUrlsScraper {
 

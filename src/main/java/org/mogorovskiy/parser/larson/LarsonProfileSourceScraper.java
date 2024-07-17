@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 
 import java.io.IOException;
 
-import static org.mogorovskiy.util.PageCompletelyLoaded.pageCompletelyLoaded;
+import static org.mogorovskiy.util.JsoupUtil.pageCompletelyLoaded;
 
 public class LarsonProfileSourceScraper implements ProfileSourceScraper {
 
