@@ -1,4 +1,4 @@
-package org.mogorovskiy.util;
+package org.mogorovskiy;
 
 import lombok.RequiredArgsConstructor;
 import org.mogorovskiy.parser.larson.LarsonParser;

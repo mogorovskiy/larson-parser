@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 
 import static org.apache.commons.lang3.StringUtils.substringBetween;
 import static org.mogorovskiy.parser.larson.LarsonProfileParser.LOCATIONS_SELECTOR;
-import static org.mogorovskiy.parser.larson.LarsonProfileParser.PRACTICE_AREAS_SELECTOR;
 
 public class JsoupUtil {
 
@@ -75,13 +74,6 @@ public class JsoupUtil {
         }
 
         return null;
-    }
-
-    public static List<String> parsePracticeAreas(Document attorneyPage) {
-        Elements practiceAreasElements = attorneyPage.select(PRACTICE_AREAS_SELECTOR);
-        return practiceAreasElements.eachText().stream()
-                .map(text -> trimText(text, 3))
-                .collect(Collectors.toList());
     }
 
     public static String parseProfilePhotoUrl(Document attorneyPage) {

@@ -28,13 +28,11 @@ public abstract class AbstractAttorneyParser {
         List<AttorneyProfileSource> profileSources = new ArrayList<>();
         for (String profileUrl : profileUrls) {
             profileSources.add(profileSourceScraper.scrape(profileUrl, webDriver));
-            break;
         }
 
         List<Attorney> attorneys = new ArrayList<>();
         for (AttorneyProfileSource source : profileSources) {
             attorneys.add(profileParser.parse(source));
-            break;
         }
 
         attorneyService.save(attorneys);
